@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/views/screens/homepage.dart';
-import 'main.dart';
+
 
 void main(){
   runApp(Counsler());
