@@ -18,11 +18,29 @@ class Loginin extends StatefulWidget{
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              width: 0.5 * MediaQuery.of(context).size.width,
-              child:TextField()),
-              
+          children: [ 
+          Expanded(
+              child: ListView(children:[
+                TextFormField(
+                  decoration: const InputDecoration(
+                    border:  OutlineInputBorder(),
+                    labelText: 'Enter your username',
+                    isDense: true,
+                    contentPadding: EdgeInsets.all(8),
+                    
+                  ) ,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Enter password',
+                    isDense: true,
+                    contentPadding: EdgeInsets.all(8),
+                    
+                  ),
+                ),
+              ],),
+          ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,4 +54,5 @@ class Loginin extends StatefulWidget{
       );
     }
   }
+
 
