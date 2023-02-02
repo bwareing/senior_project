@@ -38,6 +38,8 @@ class Loginin extends StatefulWidget{
                     labelText: 'password',
                     isDense: true,
                     contentPadding: EdgeInsets.all(8),
+
+                  
                     
                   ),
                 ),
@@ -48,16 +50,20 @@ class Loginin extends StatefulWidget{
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-              ElevatedButton(onPressed:() {} , child: Text('Log in')),
+              ElevatedButton(onPressed:() {} , child: Text('Log In')),
+              Text('     or     '),
+              ElevatedButton(onPressed: () {}, child: Text('New User'))
               ],
+              
             ),
+
+            Text(
+              "Suicide Hotline phone number: 988",
+              style:TextStyle(fontSize: 25), 
+              ),  
             ],
         ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(bottom: 50),
-          child: BottomNavigationBar(
-            
-          )),
+        
       );
     }
   }
