@@ -20,11 +20,13 @@ class Loginin extends StatefulWidget{
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [ 
           Expanded(
+            child: SizedBox(
+              width: 150,
               child: ListView(children:[
                 TextFormField(
                   decoration: const InputDecoration(
                     border:  OutlineInputBorder(),
-                    labelText: 'Enter your username',
+                    labelText: 'username',
                     isDense: true,
                     contentPadding: EdgeInsets.all(8),
                     
@@ -33,13 +35,14 @@ class Loginin extends StatefulWidget{
                 TextFormField(
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Enter password',
+                    labelText: 'password',
                     isDense: true,
                     contentPadding: EdgeInsets.all(8),
                     
                   ),
                 ),
               ],),
+            ),
           ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -47,10 +50,14 @@ class Loginin extends StatefulWidget{
               children: [
               ElevatedButton(onPressed:() {} , child: Text('Log in')),
               ],
-            ),  
-
-          ],
+            ),
+            ],
         ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(bottom: 50),
+          child: BottomNavigationBar(
+            
+          )),
       );
     }
   }
