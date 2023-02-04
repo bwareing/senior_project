@@ -1,8 +1,7 @@
 import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:my_app/views/screens/aboutus.dart';
-
+import 'package:my_app/views/screens/newuser.dart';
 
 class Loginin extends StatefulWidget{
   @override
@@ -27,8 +26,7 @@ class Loginin extends StatefulWidget{
           elevation: 0,
           backgroundColor: Color.fromARGB(255, 59, 77, 86),
              
-
-        ),
+    ),
         body: Center( 
         child:Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -38,32 +36,33 @@ class Loginin extends StatefulWidget{
             child: SizedBox(
               width: 150,
               child: ListView(children:[
-                SizedBox(height: 40,),
+                const SizedBox(height: 40,),
                 TextFormField(
                   decoration: const InputDecoration(
                     border:  OutlineInputBorder(),
-                    labelText: 'username',
+                    labelText: 'Username',
                     isDense: true,
                     contentPadding: EdgeInsets.all(8),
                     
                   ) ,
                 ),
-                SizedBox(height: 15,),
+                const SizedBox(height: 15,),
                 TextFormField(
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'password',
+                    labelText: 'Password',
                     isDense: true,
                     contentPadding: EdgeInsets.all(8),
 
-                  
-                    
-                  ),
+                   ),
                 ),
-              SizedBox(height: 15,),
+              const SizedBox(height: 15,),
               ElevatedButton(onPressed:() {} , child: Text('Log In')),
               Text('                   or'),
-              ElevatedButton(onPressed: () {}, child: Text('New User'))
+              ElevatedButton(onPressed: () {
+                 Navigator.push(context,
+                MaterialPageRoute(builder:(context)=>  NewUser()));
+              }, child: const Text('New User'))
               ],),
             ),
           ),
