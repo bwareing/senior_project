@@ -56,7 +56,17 @@ class Loginin extends StatefulWidget{
 
                    ),
                 ),
-              const SizedBox(height: 15,),
+              const SizedBox(height: 7,),
+              TextButton( style: TextButton.styleFrom(
+                textStyle: const TextStyle(
+                  decoration: TextDecoration.underline,
+                  fontSize: 12,
+
+                )
+              ),
+                onPressed: () {}, child: const Text('need help')),
+
+              const SizedBox(height: 7,),
               ElevatedButton(onPressed:() {} , child: Text('Log In')),
               Text('                   or'),
               ElevatedButton(onPressed: () {
@@ -67,7 +77,6 @@ class Loginin extends StatefulWidget{
             ),
           ),
            
-
             const Text(
               "Suicide Hotline phone number: 988",
               style:TextStyle(fontSize: 25), 
