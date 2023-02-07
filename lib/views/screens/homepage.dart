@@ -1,7 +1,7 @@
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:my_app/views/screens/aboutus.dart';
-import 'package:my_app/views/screens/newuser.dart';
+import 'package:my_app/views/screens/createnewuser.dart';
 
 class Loginin extends StatefulWidget{
   @override
