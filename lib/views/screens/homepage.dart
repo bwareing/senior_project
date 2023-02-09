@@ -1,7 +1,7 @@
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:my_app/views/screens/aboutus.dart';
-import 'package:my_app/views/screens/createnewuser.dart';
+import 'package:my_app/views/screens/newprofilecreatepage.dart';
 
 class Loginin extends StatefulWidget{
   @override
@@ -9,6 +9,9 @@ class Loginin extends StatefulWidget{
 }
 
   class _Loginin extends State<Loginin> {
+    final _userNameController = TextEditingController();
+    final _passWordController = TextEditingController();
+    
     @override
     Widget build(BuildContext context){
       return Scaffold(
