@@ -41,6 +41,7 @@ class Loginin extends StatefulWidget{
               child: ListView(children:[
                 const SizedBox(height: 40,),
                 TextFormField(
+                  controller: _userNameController,
                   decoration: const InputDecoration(
                     border:  OutlineInputBorder(),
                     labelText: 'Username',
@@ -51,6 +52,7 @@ class Loginin extends StatefulWidget{
                 ),
                 const SizedBox(height: 15,),
                 TextFormField(
+                  controller: _passWordController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
