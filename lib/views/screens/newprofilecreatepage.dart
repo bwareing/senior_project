@@ -22,6 +22,7 @@ class _NewUser extends State<NewUser>{
   final _degreeLevelController = TextEditingController();
   final _userNameController = TextEditingController();
   final _passWordController =TextEditingController();
+  static List<String> list = <String>['yes','no'];
 
   @override
   Widget build(BuildContext context){
@@ -84,8 +85,37 @@ class _NewUser extends State<NewUser>{
                 contentPadding: EdgeInsets.all(8),
               ),
 
-             )
-            
+             ),
+             const SizedBox(height: 15,),
+             TextFormField(
+              controller: _cityController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'city',
+                isDense: true,
+                contentPadding: EdgeInsets.all(8),
+              ),
+            ),
+             const SizedBox(height: 15,),
+             TextFormField(
+              controller: _stateController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'state',
+                isDense: true,
+                contentPadding: EdgeInsets.all(8),
+              ),
+            ), 
+             const SizedBox(height: 15,),
+             TextFormField(
+              controller: _zipController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'zip',
+                isDense: true,
+                contentPadding: EdgeInsets.all(8),
+              ),
+            ),
             ],
 
             ),
