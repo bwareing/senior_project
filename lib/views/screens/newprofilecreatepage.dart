@@ -22,7 +22,8 @@ class _NewUser extends State<NewUser>{
   final _degreeLevelController = TextEditingController();
   final _userNameController = TextEditingController();
   final _passWordController =TextEditingController();
-  static List<String> list = <String>['yes','no'];
+  String dropdownvalue = '---';
+  static List<String> choices =['---','yes','no'];
 
   @override
   Widget build(BuildContext context){
@@ -115,6 +116,22 @@ class _NewUser extends State<NewUser>{
                 isDense: true,
                 contentPadding: EdgeInsets.all(8),
               ),
+            ),
+            
+            DropdownButton(
+              value: dropdownvalue,
+              icon: const Icon(Icons.keyboard_arrow_down_rounded),
+              items: choices.map((String items){
+                return DropdownMenuItem(
+                  value: items,
+                  child: Text(items),
+                );
+              }).toList(),
+              onChanged: (String? newValue){
+                setState((){
+                  dropdownvalue = newValue!;
+                });
+              },
             ),
             ],
 
