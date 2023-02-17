@@ -48,8 +48,6 @@ class _NewUser extends State<NewUser> {
     var resp = await request.send();
 
     String result = await resp.stream.bytesToString();
-
-    print(result);
   }
 
   @override
@@ -68,128 +66,152 @@ class _NewUser extends State<NewUser> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
-                  child: SizedBox(
-                width: 150,
-                child: ListView(
-                  children: [
-                    const Text("new user form", style: TextStyle(fontSize: 20)),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      controller: _firstNameController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'First Name',
-                        isDense: true,
-                        contentPadding: EdgeInsets.all(8),
+                child: SizedBox(
+                  width: 150,
+                  child: ListView(
+                    children: [
+                      const Text("new user form",
+                          style: TextStyle(fontSize: 20)),
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    TextFormField(
-                      controller: _lastNameController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Last name',
-                        isDense: true,
-                        contentPadding: EdgeInsets.all(8),
+                      TextFormField(
+                        controller: _firstNameController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'First Name',
+                          isDense: true,
+                          contentPadding: EdgeInsets.all(8),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    TextFormField(
-                      controller: _emailController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'email',
-                        isDense: true,
-                        contentPadding: EdgeInsets.all(8),
+                      const SizedBox(
+                        height: 15,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    TextFormField(
-                      controller: _addressController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'address',
-                        isDense: true,
-                        contentPadding: EdgeInsets.all(8),
+                      TextFormField(
+                        controller: _lastNameController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Last name',
+                          isDense: true,
+                          contentPadding: EdgeInsets.all(8),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    TextFormField(
-                      controller: _cityController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'city',
-                        isDense: true,
-                        contentPadding: EdgeInsets.all(8),
+                      const SizedBox(
+                        height: 15,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    TextFormField(
-                      controller: _stateController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'state',
-                        isDense: true,
-                        contentPadding: EdgeInsets.all(8),
+                      TextFormField(
+                        controller: _emailController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'email',
+                          isDense: true,
+                          contentPadding: EdgeInsets.all(8),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    TextFormField(
-                      controller: _zipController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'zip',
-                        isDense: true,
-                        contentPadding: EdgeInsets.all(8),
+                      const SizedBox(
+                        height: 15,
                       ),
-                    ),
-                    const Text("Counselor?", style: TextStyle(fontSize: 15)),
-                    DropdownButton(
-                      value: dropdownvalue,
-                      icon: const Icon(Icons.keyboard_arrow_down_rounded),
-                      items: choices.map((String items) {
-                        return DropdownMenuItem(
-                          value: items,
-                          child: Text(items),
-                        );
-                      }).toList(),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropdownvalue = newValue!;
-                        });
-                      },
-                    ),
-                    const Text("If yes please upload proof",
-                        style: TextStyle(fontSize: 15)),
-                    ElevatedButton(
-                        child: const Text("Choose File"),
-                        onPressed: () => _chooseFileUsingFilePicker()),
-                    if (objFile != null) Text("File name: ${objFile.name}"),
-                    //if (objFile != null) Text()
-
-                    const SizedBox(
-                      height: 7,
-                    ),
-                    ElevatedButton(
-                        child: const Text("upload file"),
-                        onPressed: () => uploadSelectedFile()),
-                  ],
+                      TextFormField(
+                        controller: _addressController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'address',
+                          isDense: true,
+                          contentPadding: EdgeInsets.all(8),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      TextFormField(
+                        controller: _cityController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'city',
+                          isDense: true,
+                          contentPadding: EdgeInsets.all(8),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      TextFormField(
+                        controller: _stateController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'state',
+                          isDense: true,
+                          contentPadding: EdgeInsets.all(8),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      TextFormField(
+                        controller: _zipController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'zip',
+                          isDense: true,
+                          contentPadding: EdgeInsets.all(8),
+                        ),
+                      ),
+                      const Text("Counselor?", style: TextStyle(fontSize: 15)),
+                      DropdownButton(
+                        value: dropdownvalue,
+                        icon: const Icon(Icons.keyboard_arrow_down_rounded),
+                        items: choices.map((String items) {
+                          return DropdownMenuItem(
+                            value: items,
+                            child: Text(items),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownvalue = newValue!;
+                          });
+                        },
+                      ),
+                      const Text("If yes please upload proof",
+                          style: TextStyle(fontSize: 15)),
+                      ElevatedButton(
+                          child: const Text("Choose File"),
+                          onPressed: () => _chooseFileUsingFilePicker()),
+                      if (objFile != null) Text("File name: ${objFile.name}"),
+                      const SizedBox(
+                        height: 7,
+                      ),
+                      ElevatedButton(
+                          child: const Text("upload file"),
+                          onPressed: () => uploadSelectedFile()),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      TextFormField(
+                        controller: _userNameController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Username',
+                          isDense: true,
+                          contentPadding: EdgeInsets.all(8),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      TextFormField(
+                        controller: _passWordController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Password',
+                          isDense: true,
+                          contentPadding: EdgeInsets.all(8),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              )),
+              ),
             ],
           ),
         ),
