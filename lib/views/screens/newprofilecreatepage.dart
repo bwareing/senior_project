@@ -1,14 +1,15 @@
 import 'dart:html';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/views/screens/homepage.dart';
+import 'package:http/http.dart' as http;
 
-class NewUser extends StatefulWidget{
+class NewUser extends StatefulWidget {
   @override
-  _NewUser createState()=> _NewUser();
+  _NewUser createState() => _NewUser();
 }
 
-class _NewUser extends State<NewUser>{
-
+class _NewUser extends State<NewUser> {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -17,134 +18,169 @@ class _NewUser extends State<NewUser>{
   final _stateController = TextEditingController();
   final _zipController = TextEditingController();
   final _counslerController = TextEditingController();
-  final _schoolController = TextEditingController();
-  final _degreeController = TextEditingController();
-  final _degreeLevelController = TextEditingController();
   final _userNameController = TextEditingController();
-  final _passWordController =TextEditingController();
+  final _passWordController = TextEditingController();
   String dropdownvalue = '---';
-  static List<String> choices =['---','yes','no'];
+  var objFile = null;
+  static List<String> choices = ['---', 'yes', 'no'];
+
+  void _chooseFileUsingFilePicker() async {
+    var result = await FilePicker.platform.pickFiles(
+      withReadStream: true,
+    );
+    if (result != null) {
+      setState(() {
+        objFile = result.files.single;
+      });
+    }
+  }
+
+  void uploadSelectedFile() async {
+    final request = http.MultipartRequest(
+      "POST",
+      Uri.parse("api url"),
+    );
+    //request.fields["id"] = "abc";
+    request.files.add(http.MultipartFile(
+        "parameter name server side", objFile.readStream, objFile.size,
+        filename: objFile.name));
+
+    var resp = await request.send();
+
+    String result = await resp.stream.bytesToString();
+
+    print(result);
+  }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:const Text('New User'),
-          elevation: 0,
-          backgroundColor: Color.fromARGB(255, 59, 77, 86),
-
+        title: const Text('New User'),
+        elevation: 0,
+        backgroundColor: Color.fromARGB(255, 59, 77, 86),
       ),
-   body:Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Expanded(
-          child: SizedBox(
-            width: 150,
-            child: ListView(children: [
-              const SizedBox(height: 40,),
-              TextFormField(
-                controller: _firstNameController,
-                decoration: const InputDecoration(
-                 border: OutlineInputBorder(),
-                 labelText: 'First Name',
-                 isDense: true,
-                 contentPadding: EdgeInsets.all(8),
-                ),
-                ),
-            
-            const SizedBox(height: 15,),
-            TextFormField(
-              controller: _lastNameController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Last name',
-                isDense: true,
-                contentPadding: EdgeInsets.all(8),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+                child: SizedBox(
+              width: 150,
+              child: ListView(
+                children: [
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  TextFormField(
+                    controller: _firstNameController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'First Name',
+                      isDense: true,
+                      contentPadding: EdgeInsets.all(8),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    controller: _lastNameController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Last name',
+                      isDense: true,
+                      contentPadding: EdgeInsets.all(8),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'email',
+                      isDense: true,
+                      contentPadding: EdgeInsets.all(8),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    controller: _addressController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'address',
+                      isDense: true,
+                      contentPadding: EdgeInsets.all(8),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    controller: _cityController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'city',
+                      isDense: true,
+                      contentPadding: EdgeInsets.all(8),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    controller: _stateController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'state',
+                      isDense: true,
+                      contentPadding: EdgeInsets.all(8),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    controller: _zipController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'zip',
+                      isDense: true,
+                      contentPadding: EdgeInsets.all(8),
+                    ),
+                  ),
+                  DropdownButton(
+                    value: dropdownvalue,
+                    icon: const Icon(Icons.keyboard_arrow_down_rounded),
+                    items: choices.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownvalue = newValue!;
+                      });
+                    },
+                  ),
+                  ElevatedButton(
+                      child: const Text("Choose File"),
+                      onPressed: () => _chooseFileUsingFilePicker()),
+                  ElevatedButton(
+                      child: const Text("upload file"),
+                      onPressed: () => uploadSelectedFile()),
+                ],
               ),
-            ),
-            
-            const SizedBox(height: 15,),
-            TextFormField(
-              controller: _emailController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'email',
-                isDense: true,
-                contentPadding: EdgeInsets.all(8),
-            ),
-            ),
-             
-             const SizedBox(height: 15,),
-             TextFormField(
-              controller: _addressController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'address',
-                isDense: true,
-                contentPadding: EdgeInsets.all(8),
-              ),
-
-             ),
-             const SizedBox(height: 15,),
-             TextFormField(
-              controller: _cityController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'city',
-                isDense: true,
-                contentPadding: EdgeInsets.all(8),
-              ),
-            ),
-             const SizedBox(height: 15,),
-             TextFormField(
-              controller: _stateController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'state',
-                isDense: true,
-                contentPadding: EdgeInsets.all(8),
-              ),
-            ), 
-             const SizedBox(height: 15,),
-             TextFormField(
-              controller: _zipController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'zip',
-                isDense: true,
-                contentPadding: EdgeInsets.all(8),
-              ),
-            ),
-            
-            DropdownButton(
-              value: dropdownvalue,
-              icon: const Icon(Icons.keyboard_arrow_down_rounded),
-              items: choices.map((String items){
-                return DropdownMenuItem(
-                  value: items,
-                  child: Text(items),
-                );
-              }).toList(),
-              onChanged: (String? newValue){
-                setState((){
-                  dropdownvalue = newValue!;
-                });
-              },
-            ),
-            ],
-
-            ),
-          )
-
+            )),
+          ],
         ),
-      ],
-      
-        ),
-     ),
-  );
-   
+      ),
+    );
   }
 }
-
