@@ -59,19 +59,17 @@ class _NewUser extends State<NewUser> {
         backgroundColor: Color.fromARGB(255, 59, 77, 86),
       ),
       body: Center(
-        child: Align(
-          alignment: Alignment.topLeft,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Align(
+                alignment: Alignment.center,
                 child: SizedBox(
                   width: 150,
                   child: ListView(
                     children: [
-                      const Text("new user form",
-                          style: TextStyle(fontSize: 20)),
                       const SizedBox(
                         height: 20,
                       ),
@@ -208,12 +206,19 @@ class _NewUser extends State<NewUser> {
                           contentPadding: EdgeInsets.all(8),
                         ),
                       ),
+                      const SizedBox(
+                        height: 7,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {}, child: const Text('Submit')),
+                      const Text(
+                          "Please read rules tab before pressing sunbmit"),
                     ],
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
