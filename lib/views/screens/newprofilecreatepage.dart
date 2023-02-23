@@ -3,6 +3,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/views/screens/homepage.dart';
 import 'package:http/http.dart' as http;
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class NewUser extends StatefulWidget {
   @override
@@ -20,6 +22,7 @@ class _NewUser extends State<NewUser> {
   final _counslerController = TextEditingController();
   final _userNameController = TextEditingController();
   final _passWordController = TextEditingController();
+  late DatabaseReference dbRef;
   String dropdownvalue = '---';
   var objFile = null;
   static List<String> choices = ['---', 'yes', 'no'];
@@ -51,6 +54,12 @@ class _NewUser extends State<NewUser> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    dbRef = FirebaseDatabase.instance.ref().child('Users');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -75,6 +84,7 @@ class _NewUser extends State<NewUser> {
                       ),
                       TextFormField(
                         controller: _firstNameController,
+                        keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'First Name',
@@ -87,6 +97,7 @@ class _NewUser extends State<NewUser> {
                       ),
                       TextFormField(
                         controller: _lastNameController,
+                        keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Last name',
@@ -99,6 +110,7 @@ class _NewUser extends State<NewUser> {
                       ),
                       TextFormField(
                         controller: _emailController,
+                        keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'email',
@@ -111,6 +123,7 @@ class _NewUser extends State<NewUser> {
                       ),
                       TextFormField(
                         controller: _addressController,
+                        keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'address',
@@ -123,6 +136,7 @@ class _NewUser extends State<NewUser> {
                       ),
                       TextFormField(
                         controller: _cityController,
+                        keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'city',
@@ -135,6 +149,7 @@ class _NewUser extends State<NewUser> {
                       ),
                       TextFormField(
                         controller: _stateController,
+                        keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'state',
@@ -147,6 +162,7 @@ class _NewUser extends State<NewUser> {
                       ),
                       TextFormField(
                         controller: _zipController,
+                        keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'zip',
@@ -187,6 +203,7 @@ class _NewUser extends State<NewUser> {
                       ),
                       TextFormField(
                         controller: _userNameController,
+                        keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Username',
@@ -199,6 +216,7 @@ class _NewUser extends State<NewUser> {
                       ),
                       TextFormField(
                         controller: _passWordController,
+                        keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Password',
@@ -210,7 +228,22 @@ class _NewUser extends State<NewUser> {
                         height: 7,
                       ),
                       ElevatedButton(
-                          onPressed: () {}, child: const Text('Submit')),
+                          onPressed: () {
+                            Map<String, String> users = {
+                              'first_name': _firstNameController.text,
+                              'last_name': _lastNameController.text,
+                              'email': _emailController.text,
+                              'address': _addressController.text,
+                              'city': _cityController.text,
+                              'state': _stateController.text,
+                              'zip': _zipController.text,
+                              'user_name': _userNameController.text,
+                              'password': _passWordController.text,
+                            };
+
+                            dbRef.push().set(users);
+                          },
+                          child: const Text('Submit')),
                       const Text(
                           "Please read rules tab before pressing sunbmit"),
                     ],
