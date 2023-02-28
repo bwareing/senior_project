@@ -10,7 +10,6 @@ void main() async {
     appId: "1:403984177263:web:4ba0632f330dc6ff38159a",
     messagingSenderId: "403984177263",
     projectId: "glossy-essence-309917",
-    databaseURL: "https://glossy-essence-309917-default-rtdb.firebaseio.com",
   ));
   runApp(Counsler());
 }

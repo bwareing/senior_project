@@ -1,10 +1,9 @@
 import 'dart:html';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:my_app/views/screens/database.dart';
 import 'package:my_app/views/screens/homepage.dart';
 import 'package:http/http.dart' as http;
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
 
 class NewUser extends StatefulWidget {
   @override
@@ -12,52 +11,14 @@ class NewUser extends StatefulWidget {
 }
 
 class _NewUser extends State<NewUser> {
-  final _firstNameController = TextEditingController();
-  final _lastNameController = TextEditingController();
+  final _NameController = TextEditingController();
   final _emailController = TextEditingController();
   final _addressController = TextEditingController();
   final _cityController = TextEditingController();
   final _stateController = TextEditingController();
   final _zipController = TextEditingController();
-  final _counslerController = TextEditingController();
   final _userNameController = TextEditingController();
   final _passWordController = TextEditingController();
-  late DatabaseReference dbRef;
-  String dropdownvalue = '---';
-  var objFile = null;
-  static List<String> choices = ['---', 'yes', 'no'];
-
-  void _chooseFileUsingFilePicker() async {
-    var result = await FilePicker.platform.pickFiles(
-      withReadStream: true,
-    );
-    if (result != null) {
-      setState(() {
-        objFile = result.files.single;
-      });
-    }
-  }
-
-  void uploadSelectedFile() async {
-    final request = http.MultipartRequest(
-      "POST",
-      Uri.parse("api url"),
-    );
-    //request.fields["id"] = "abc";
-    request.files.add(http.MultipartFile(
-        "parameter name server side", objFile.readStream, objFile.size,
-        filename: objFile.name));
-
-    var resp = await request.send();
-
-    String result = await resp.stream.bytesToString();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    dbRef = FirebaseDatabase.instance.ref().child('Users');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +44,7 @@ class _NewUser extends State<NewUser> {
                         height: 20,
                       ),
                       TextFormField(
-                        controller: _firstNameController,
+                        controller: _NameController,
                         keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -94,16 +55,6 @@ class _NewUser extends State<NewUser> {
                       ),
                       const SizedBox(
                         height: 15,
-                      ),
-                      TextFormField(
-                        controller: _lastNameController,
-                        keyboardType: TextInputType.text,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Last name',
-                          isDense: true,
-                          contentPadding: EdgeInsets.all(8),
-                        ),
                       ),
                       const SizedBox(
                         height: 15,
@@ -170,34 +121,9 @@ class _NewUser extends State<NewUser> {
                           contentPadding: EdgeInsets.all(8),
                         ),
                       ),
-                      const Text("Counselor?", style: TextStyle(fontSize: 15)),
-                      DropdownButton(
-                        value: dropdownvalue,
-                        icon: const Icon(Icons.keyboard_arrow_down_rounded),
-                        items: choices.map((String items) {
-                          return DropdownMenuItem(
-                            value: items,
-                            child: Text(items),
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownvalue = newValue!;
-                          });
-                        },
-                      ),
-                      const Text("If yes please upload proof",
+                      const Text("If Counsler please upload proof of eduction",
                           style: TextStyle(fontSize: 15)),
-                      ElevatedButton(
-                          child: const Text("Choose File"),
-                          onPressed: () => _chooseFileUsingFilePicker()),
-                      if (objFile != null) Text("File name: ${objFile.name}"),
-                      const SizedBox(
-                        height: 7,
-                      ),
-                      ElevatedButton(
-                          child: const Text("upload file"),
-                          onPressed: () => uploadSelectedFile()),
+                      ElevatedButton(onPressed: () {}, child: Text('upload')),
                       const SizedBox(
                         height: 15,
                       ),
@@ -228,22 +154,7 @@ class _NewUser extends State<NewUser> {
                         height: 7,
                       ),
                       ElevatedButton(
-                          onPressed: () {
-                            Map<String, String> users = {
-                              'first_name': _firstNameController.text,
-                              'last_name': _lastNameController.text,
-                              'email': _emailController.text,
-                              'address': _addressController.text,
-                              'city': _cityController.text,
-                              'state': _stateController.text,
-                              'zip': _zipController.text,
-                              'user_name': _userNameController.text,
-                              'password': _passWordController.text,
-                            };
-
-                            dbRef.push().set(users);
-                          },
-                          child: const Text('Submit')),
+                          onPressed: () {}, child: const Text('Sign Up')),
                       const Text(
                           "Please read rules tab before pressing sunbmit"),
                     ],
