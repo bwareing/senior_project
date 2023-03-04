@@ -1,8 +1,9 @@
-import 'dart:ffi';
-
+import 'dart:html';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/views/screens/homepage.dart';
-import 'package:flutter_application_1/views/screens/database.dart';
+import 'package:my_app/views/screens/database.dart';
+import 'package:my_app/views/screens/homepage.dart';
+import 'package:http/http.dart' as http;
 
 class NewUser extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class NewUser extends StatefulWidget {
 }
 
 class _NewUser extends State<NewUser> {
-  final _nameController = TextEditingController();
+  final _NameController = TextEditingController();
   final _emailController = TextEditingController();
   final _addressController = TextEditingController();
   final _cityController = TextEditingController();
@@ -18,16 +19,6 @@ class _NewUser extends State<NewUser> {
   final _zipController = TextEditingController();
   final _userNameController = TextEditingController();
   final _passWordController = TextEditingController();
-  late String realName;
-  late String realEmail;
-  late String realAddress;
-  late String realCity;
-  late String realState;
-  late String realZip;
-  late String realUsername;
-  late String realPassword;
-
-  var connection = new dataBaseConnection();
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +44,7 @@ class _NewUser extends State<NewUser> {
                         height: 20,
                       ),
                       TextFormField(
-                        controller: _nameController,
+                        controller: _NameController,
                         keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -61,6 +52,9 @@ class _NewUser extends State<NewUser> {
                           isDense: true,
                           contentPadding: EdgeInsets.all(8),
                         ),
+                      ),
+                      const SizedBox(
+                        height: 15,
                       ),
                       const SizedBox(
                         height: 15,
@@ -160,29 +154,7 @@ class _NewUser extends State<NewUser> {
                         height: 7,
                       ),
                       ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              realName = _nameController.text;
-                              realEmail = _emailController.text;
-                              realAddress = _addressController.text;
-                              realCity = _cityController.text;
-                              realState = _stateController.text;
-                              realZip = _zipController.text;
-                              realUsername = _userNameController.text;
-                              realPassword = _passWordController.text;
-                            });
-
-                            connection.buildDatabaseconnection(
-                                realName,
-                                realEmail,
-                                realAddress,
-                                realCity,
-                                realState,
-                                realZip,
-                                realUsername,
-                                realPassword);
-                          },
-                          child: const Text('Sign Up')),
+                          onPressed: () {}, child: const Text('Sign Up')),
                       const Text(
                           "Please read rules tab before pressing sunbmit"),
                     ],
