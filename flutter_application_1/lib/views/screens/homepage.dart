@@ -1,15 +1,18 @@
-//import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/views/screens/homepage.dart';
 import 'package:flutter_application_1/views/screens/ourstory.dart';
 import 'package:flutter_application_1/views/screens/newuser.dart';
 
+////////////////////////////////////////////////////////////////////////
 class Loginin extends StatefulWidget {
   @override
   _Loginin createState() => _Loginin();
 }
 
 class _Loginin extends State<Loginin> {
+///////////////////////////////////////////////////////////
+// -Varibles needed for widget
+////////////////////////////////////////////////////////////
   final _useremailController = TextEditingController();
   final _passWordController = TextEditingController();
 
