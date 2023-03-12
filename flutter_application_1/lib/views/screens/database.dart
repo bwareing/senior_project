@@ -10,7 +10,7 @@ class dataBaseConnection {
       name, email, address, city, state, zip, username, password) async {
     //print("connecting to data base");
     final conn = await MySqlConnection.connect(ConnectionSettings(
-        host: '192.168.0.220',
+        host: '10.0.2.2',
         port: 3306,
         user: 'root',
         password: 'passwordBD',
@@ -28,5 +28,6 @@ class dataBaseConnection {
           username,
           password,
         ]);
+    conn.close();
   }
 }

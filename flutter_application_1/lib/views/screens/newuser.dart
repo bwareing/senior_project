@@ -1,20 +1,15 @@
 import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/views/screens/homepage.dart';
 import 'package:flutter_application_1/views/screens/database.dart';
-/////////////////////////////////////////////////////////////////////
 
 class NewUser extends StatefulWidget {
-  const NewUser();
   @override
   _NewUser createState() => _NewUser();
 }
 
 class _NewUser extends State<NewUser> {
-  //////////////////////////////////////////////////////////
-  //  -Varibles needed for class
-  //////////////////////////////////////////////////////////
-  final formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _addressController = TextEditingController();
@@ -31,11 +26,10 @@ class _NewUser extends State<NewUser> {
   late String realZip;
   late String realUsername;
   late String realPassword;
+
   var connection = new dataBaseConnection();
+
   @override
-  ///////////////////////////////////////////////////////////
-  // -widget build
-  /////////////////////////////////////////////////////////////
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -45,7 +39,6 @@ class _NewUser extends State<NewUser> {
       ),
       body: Center(
         child: Row(
-          key: formKey,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -59,15 +52,12 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 20,
                       ),
-                      ////////////////////////////////////////////////////////////////
-                      // -Name text field
-                      ////////////////////////////////////////////////////////////////
                       TextFormField(
                         controller: _nameController,
                         keyboardType: TextInputType.text,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Name',
+                          labelText: 'First Name',
                           isDense: true,
                           contentPadding: EdgeInsets.all(8),
                         ),
@@ -75,9 +65,6 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 15,
                       ),
-                      ////////////////////////////////////////////////////////////////
-                      // -email text field
-                      ///////////////////////////////////////////////////////////////////
                       TextFormField(
                         controller: _emailController,
                         keyboardType: TextInputType.text,
@@ -91,9 +78,6 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 15,
                       ),
-                      /////////////////////////////////////////////////////////////////
-                      // -address text field
-                      //////////////////////////////////////////////////////////////////
                       TextFormField(
                         controller: _addressController,
                         keyboardType: TextInputType.text,
@@ -107,9 +91,6 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 15,
                       ),
-                      /////////////////////////////////////////////////////////////////
-                      //  -city textfield
-                      ///////////////////////////////////////////////////////////////////
                       TextFormField(
                         controller: _cityController,
                         keyboardType: TextInputType.text,
@@ -123,9 +104,6 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 15,
                       ),
-                      ////////////////////////////////////////////////////////////////////
-                      // -state textfield
-                      /////////////////////////////////////////////////////////////////////
                       TextFormField(
                         controller: _stateController,
                         keyboardType: TextInputType.text,
@@ -139,9 +117,6 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 15,
                       ),
-                      ////////////////////////////////////////////////////////////////////
-                      // -Zip textfield
-                      /////////////////////////////////////////////////////////////////////
                       TextFormField(
                         controller: _zipController,
                         keyboardType: TextInputType.number,
@@ -152,18 +127,12 @@ class _NewUser extends State<NewUser> {
                           contentPadding: EdgeInsets.all(8),
                         ),
                       ),
-                      //////////////////////////////////////////////////////////////////////
-                      // -upload file button
-                      ////////////////////////////////////////////////////////////////////////
                       const Text("If Counsler please upload proof of eduction",
                           style: TextStyle(fontSize: 15)),
                       ElevatedButton(onPressed: () {}, child: Text('upload')),
                       const SizedBox(
                         height: 15,
                       ),
-                      ////////////////////////////////////////////////////////////////////////
-                      // -username textfield
-                      ////////////////////////////////////////////////////////////////////////
                       TextFormField(
                         controller: _userNameController,
                         keyboardType: TextInputType.text,
@@ -177,9 +146,6 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 15,
                       ),
-                      ////////////////////////////////////////////////////////////////////////
-                      // -password textfield
-                      ////////////////////////////////////////////////////////////////////////
                       TextFormField(
                         controller: _passWordController,
                         keyboardType: TextInputType.text,
@@ -193,9 +159,6 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 7,
                       ),
-                      ///////////////////////////////////////////////////////////////////////
-                      // -Signup button
-                      //////////////////////////////////////////////////////////////////////
                       ElevatedButton(
                           onPressed: () {
                             setState(() {

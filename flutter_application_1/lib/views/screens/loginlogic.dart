@@ -9,6 +9,7 @@ import 'package:flutter_application_1/views/screens/homepage.dart';
 import 'package:flutter_application_1/views/screens/newuser.dart';
 
 class dataBase_check {
+  dynamic rightLog;
   Future buildDatabase_check(email, password) async {
     final conn = await MySqlConnection.connect(ConnectionSettings(
         host: '10.0.2.2',
@@ -34,20 +35,15 @@ class dataBase_check {
       results2 += row.toString();
     }
 
-    print(results);
-
     if (results == 'Fields: {password: $password}') {
-      print('yes');
+      if (results2 == 'Fields: {email: $email}') {
+        rightLog = true;
+      } else {
+        rightLog = false;
+      }
     } else {
-      print('no');
+      rightLog = false;
     }
-
-    if (results2 == 'Fields: {email: $email}') {
-      print('yes');
-    } else {
-      print('no');
-    }
-
-    //var json = convert.jsonDecode(check);
+    return rightLog;
   }
 }
