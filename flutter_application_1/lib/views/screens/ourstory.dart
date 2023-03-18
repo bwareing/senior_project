@@ -1,7 +1,7 @@
-//import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/views/screens/homepage.dart';
 
+///////////////////////////////////////////////////////////////////////////////////
 class OurStory extends StatefulWidget {
   @override
   _OurStory createState() => _OurStory();
@@ -16,6 +16,8 @@ class _OurStory extends State<OurStory> {
           elevation: 0,
           backgroundColor: Color.fromARGB(255, 59, 77, 86),
         ),
+
+        ///paragraph
         body: Center(
           child: Column(children: [
             const Expanded(

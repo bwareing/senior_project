@@ -1,10 +1,10 @@
 import 'dart:ffi';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_application_1/views/screens/homepage.dart';
-import 'package:flutter_application_1/views/screens/database.dart';
+import 'package:flutter_application_1/views/screens/user_database.dart';
+//////////////////////////////////////////////////////////////////////
 
 class NewUser extends StatefulWidget {
   @override
@@ -12,6 +12,9 @@ class NewUser extends StatefulWidget {
 }
 
 class _NewUser extends State<NewUser> {
+/////////////////////////////////////////////////////////////////////
+// Varibles needed for class
+/////////////////////////////////////////////////////////////////////
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _addressController = TextEditingController();
@@ -28,9 +31,8 @@ class _NewUser extends State<NewUser> {
   late String realZip;
   late String realUsername;
   late String realPassword;
-
   var connection = new dataBaseConnection();
-
+//////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +56,9 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 20,
                       ),
+                      /////////////////////////////////////////////////
+                      /// Name text field
+                      /////////////////////////////////////////////////
                       TextFormField(
                         controller: _nameController,
                         keyboardType: TextInputType.text,
@@ -67,6 +72,9 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 15,
                       ),
+                      ////////////////////////////////////////////////
+                      /// Email text field
+                      ////////////////////////////////////////////////
                       TextFormField(
                         controller: _emailController,
                         keyboardType: TextInputType.text,
@@ -80,6 +88,9 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 15,
                       ),
+                      ////////////////////////////////////////////////
+                      /// Address text field
+                      /////////////////////////////////////////////////
                       TextFormField(
                         controller: _addressController,
                         keyboardType: TextInputType.text,
@@ -93,6 +104,9 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 15,
                       ),
+                      ////////////////////////////////////////////////
+                      /// city text field
+                      ////////////////////////////////////////////////
                       TextFormField(
                         controller: _cityController,
                         keyboardType: TextInputType.text,
@@ -106,6 +120,9 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 15,
                       ),
+                      ///////////////////////////////////////////////////
+                      /// State text field
+                      ///////////////////////////////////////////////////
                       TextFormField(
                         controller: _stateController,
                         keyboardType: TextInputType.text,
@@ -119,6 +136,9 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 15,
                       ),
+                      //////////////////////////////////////////////////
+                      /// Zip text field
+                      ///////////////////////////////////////////////////
                       TextFormField(
                         controller: _zipController,
                         keyboardType: TextInputType.number,
@@ -129,6 +149,9 @@ class _NewUser extends State<NewUser> {
                           contentPadding: EdgeInsets.all(8),
                         ),
                       ),
+                      /////////////////////////////////////////////////////
+                      /// File upload
+                      //////////////////////////////////////////////////////
                       const Text("If Counsler please upload proof of eduction",
                           style: TextStyle(fontSize: 15)),
                       ElevatedButton(
@@ -150,6 +173,9 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 15,
                       ),
+                      ///////////////////////////////////////////////////
+                      /// Username text field
+                      ////////////////////////////////////////////////////
                       TextFormField(
                         controller: _userNameController,
                         keyboardType: TextInputType.text,
@@ -163,6 +189,9 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 15,
                       ),
+                      /////////////////////////////////////////////////////
+                      /// password text field
+                      /////////////////////////////////////////////////////
                       TextFormField(
                         controller: _passWordController,
                         keyboardType: TextInputType.text,
@@ -176,6 +205,9 @@ class _NewUser extends State<NewUser> {
                       const SizedBox(
                         height: 7,
                       ),
+                      ///////////////////////////////////////////////////
+                      /// Submit button
+                      ////////////////////////////////////////////////////
                       ElevatedButton(
                           onPressed: () {
                             setState(() {
@@ -188,7 +220,7 @@ class _NewUser extends State<NewUser> {
                               realUsername = _userNameController.text;
                               realPassword = _passWordController.text;
                             });
-
+                            //inserting into data base
                             connection.buildDatabaseconnection(
                                 realName,
                                 realEmail,

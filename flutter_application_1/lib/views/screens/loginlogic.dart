@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert' as convert;
 import 'dart:ffi';
-//import 'dart:html';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mysql1/mysql1.dart';
@@ -26,7 +25,7 @@ class dataBase_check {
 
     String results = '';
     String results2 = '';
-
+    //turn query results into string
     for (var row in check) {
       results += row.toString();
     }
@@ -34,7 +33,7 @@ class dataBase_check {
     for (var row in check2) {
       results2 += row.toString();
     }
-
+    //logic to check if log in is
     if (results == 'Fields: {password: $password}') {
       if (results2 == 'Fields: {email: $email}') {
         rightLog = true;

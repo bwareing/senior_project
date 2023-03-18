@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:flutter_application_1/views/screens/clander.dart';
 
 final Uri _url = Uri.parse('https://988lifeline.org/');
 
@@ -12,7 +13,7 @@ class Userprofilepage extends StatefulWidget {
 
 class _Userprofilepage extends State<Userprofilepage> {
 ///////////////////////////////////////////////////////////
-// -Varibles needed for widget
+// -launch url
 ////////////////////////////////////////////////////////////
   Future<void> _launchUrl() async {
     if (!await launchUrl(_url)) {
@@ -32,6 +33,9 @@ class _Userprofilepage extends State<Userprofilepage> {
           child: ListView(
         padding: EdgeInsets.zero,
         children: [
+          /////////////////////////////////////////////
+          /// Drawer headear
+          ////////////////////////////////////////////
           const DrawerHeader(
             decoration: BoxDecoration(
               color: Colors.blue,
@@ -41,7 +45,10 @@ class _Userprofilepage extends State<Userprofilepage> {
                 style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
           ),
           ListTile(
-            leading: Icon(
+            ///////////////////////////////////////
+            /// Sucide hotline website
+            //////////////////////////////////////
+            leading: const Icon(
               Icons.link,
             ),
             title: const Text('Sucide hotline website'),
@@ -49,26 +56,38 @@ class _Userprofilepage extends State<Userprofilepage> {
               _launchUrl();
             },
           ),
+          ///////////////////////////////////////
+          /// Find a Counselor
+          //////////////////////////////////////
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.search,
             ),
-            title: const Text('find counselor'),
+            title: const Text('Find counselor'),
             onTap: () {},
           ),
+          ///////////////////////////////////
+          /// Find someone to Counsel
+          //////////////////////////////////
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.search,
             ),
-            title: const Text('find people to counsel'),
+            title: const Text('Find people to counsel'),
             onTap: () {},
           ),
+          ///////////////////////////////
+          /// Set a appoiment
+          ///////////////////////////////
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.calendar_month,
             ),
-            title: const Text('calendar'),
-            onTap: () {},
+            title: const Text('Calendar'),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => setAppoiment()));
+            },
           )
         ],
       )),
