@@ -3,6 +3,7 @@ import 'package:flutter_application_1/views/screens/homepage.dart';
 import 'package:flutter_application_1/views/screens/ourstory.dart';
 import 'package:flutter_application_1/views/screens/newuser.dart';
 import 'package:flutter_application_1/views/screens/loginlogic.dart';
+import 'package:flutter_application_1/views/screens/profileuserpage.dart';
 
 ////////////////////////////////////////////////////////////////////////
 class Loginin extends StatefulWidget {
@@ -100,7 +101,10 @@ class _Loginin extends State<Loginin> {
                           bool rightLog = logincheck.rightLog;
                           print(rightLog);
                           if (rightLog == true) {
-                            print('right log in');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Userprofilepage()));
                           } else {
                             print('wrong log');
                           }

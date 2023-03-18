@@ -1,6 +1,8 @@
 import 'dart:ffi';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter_application_1/views/screens/homepage.dart';
 import 'package:flutter_application_1/views/screens/database.dart';
 
@@ -129,7 +131,22 @@ class _NewUser extends State<NewUser> {
                       ),
                       const Text("If Counsler please upload proof of eduction",
                           style: TextStyle(fontSize: 15)),
-                      ElevatedButton(onPressed: () {}, child: Text('upload')),
+                      ElevatedButton(
+                          onPressed: () async {
+                            FilePickerResult? result =
+                                await FilePicker.platform.pickFiles();
+
+                            if (result == null) {
+                              print("no file selected");
+                            } else {
+                              setState(() {
+                                result?.files.forEach((element) {
+                                  print(element.name);
+                                });
+                              });
+                            }
+                          },
+                          child: Text('upload')),
                       const SizedBox(
                         height: 15,
                       ),
