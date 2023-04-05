@@ -4,6 +4,7 @@ import 'package:flutter_application_1/views/screens/ourstory.dart';
 import 'package:flutter_application_1/views/screens/newuser.dart';
 import 'package:flutter_application_1/views/screens/loginlogic.dart';
 import 'package:flutter_application_1/views/screens/profileuserpage.dart';
+import 'package:flutter_application_1/views/screens/appoimentlogic_2.dart';
 
 ////////////////////////////////////////////////////////////////////////
 class Loginin extends StatefulWidget {
@@ -23,6 +24,7 @@ class _Loginin extends State<Loginin> {
   late String doublueCheck;
   late String doublue2Check;
   var logincheck = new dataBase_check();
+  var user_Id = dataBaseConnection_appoiment_set();
 
   @override
   Widget build(BuildContext context) {
@@ -99,8 +101,13 @@ class _Loginin extends State<Loginin> {
                           logincheck.buildDatabase_check(
                               realEmail, realPassword);
                           bool rightLog = logincheck.rightLog;
+
                           print(rightLog);
                           if (rightLog == true) {
+                            //user_Id
+                            //  .buildDatabaseconnection_appoiment(realEmail);
+                            //int user_number = user_Id.users_number;
+                            //print('this is user:$user_number');
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -113,6 +120,7 @@ class _Loginin extends State<Loginin> {
                     Text('                   or'),
                     ElevatedButton(
                         onPressed: () {
+                          user_Id.buildDatabaseconnection_appoiment(realEmail);
                           Navigator.push(
                               context,
                               MaterialPageRoute(

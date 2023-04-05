@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/views/screens/homepage.dart';
+import 'package:flutter_application_1/views/screens/event_provider.dart';
 
 void main() {
   runApp(Counsler());
